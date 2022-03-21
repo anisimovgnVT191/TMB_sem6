@@ -1,7 +1,7 @@
 import random
 from linear_algebra import squared_distance, vector_mean, distance
 import matplotlib.pyplot as plt
-
+from random import randrange, seed
 
 class KMeans:
     """performs k-means clustering"""
@@ -22,7 +22,7 @@ class KMeans:
 
         while True:
             # Find new assignments
-            new_assignments = map(self.classify, inputs)
+            new_assignments = list(map(self.classify, inputs))
 
             # If no assignments have changed, we're done.
             if assignments == new_assignments:
@@ -144,3 +144,18 @@ def generate_clusters(base_cluster, num_clusters):
 
     # once we have enough clusters...
     return clusters
+
+
+if __name__ == "__main__":
+    seed(0)
+    data = [(randrange(1, 13, 1), randrange(1, 6, 1), randrange(1, 6, 1), randrange(1, 4, 1), randrange(0, 2, 1)) for _
+            in range(100)]
+    data = list(map(list, data))
+    print(data)
+    K = 20
+    courier_route = KMeans(K)
+    print("kmeans pass")
+    courier_route.train(data)
+    print("train pass")
+    print(courier_route.means)
+    plot_squared_clustering_errors(data)
