@@ -151,11 +151,10 @@ if __name__ == "__main__":
     data = [(randrange(1, 13, 1), randrange(1, 6, 1), randrange(1, 6, 1), randrange(1, 4, 1), randrange(0, 2, 1)) for _
             in range(100)]
     data = list(map(list, data))
-    print(data)
-    K = 20
+    print("x = ", data)
+    K = 47
+    print("k = ", K)
     courier_route = KMeans(K)
-    print("kmeans pass")
     courier_route.train(data)
-    print("train pass")
-    print(courier_route.means)
+    print("Кластеризация х = ", courier_route.means)
     plot_squared_clustering_errors(data)
